@@ -1,4 +1,4 @@
-const { Lesson } = require("../models/model");
+const { Lesson, Instructor } = require("../models/model");
 
 exports.getLessons = async (req, res) => {
   try {
@@ -34,6 +34,18 @@ exports.acceptLessons = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
+
+exports.addLessonToInstructor = async (req,res) => {
+  const {lessonid, email} = req.params
+  try {
+    const instructor = await Instructor.findOne({email: email})
+    instructor.acceptedLessons.push(lessonid)
+    const updatedInstructor = await instructor.save();
+    res.status(200).json({message: 'Lesson added to instructor', instructor: updatedInstructor})
+  } catch (error) {
+    res.status(500).json({message: error})
+  }
+}
 
 exports.rejectLessons = async (req, res) => {
   try {

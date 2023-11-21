@@ -1,5 +1,5 @@
 import moment from "moment";
-import { acceptLesson, rejectLesson } from "../apiService";
+import { acceptLesson, rejectLesson, addLessonToInstructor } from "../apiService";
 import sortLessons from "../utils/sortLessons";
 import { useState } from "react";
 import { Lesson } from "../types";
@@ -13,13 +13,15 @@ interface LessonProps {
 const Lessons: React.FC<LessonProps> = ({ lesson, setLessons, isClientView }) => {
   const [isActionable, setisActionable] = useState(true);
 
+  const instructorEmail = localStorage.getItem('instructor_email')
 
   function handleAccept() {
-    acceptLesson(lesson._id).then((updatedLesson) => {
+    acceptLesson(lesson._id,).then((updatedLesson) => {
       setLessons((prev: Lesson[]) => {
         const filteredLessons = prev.filter((el) => el._id !== lesson._id);
         return sortLessons([...filteredLessons, updatedLesson]);
       });
+      addLessonToInstructor(lesson._id, instructorEmail)
       setisActionable(false);
     });
   }
@@ -33,6 +35,8 @@ const Lessons: React.FC<LessonProps> = ({ lesson, setLessons, isClientView }) =>
       setisActionable(false);
     });
   }
+
+  if (lesson.status === "ACCEPTED") return null;
 
   return (
     <div className="Lesson">

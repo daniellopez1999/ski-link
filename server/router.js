@@ -32,6 +32,8 @@ router.put("/lessons/:id/accept", dashboardController.acceptLessons);
 
 router.put("/lessons/:id/reject", dashboardController.rejectLessons);
 
+router.put("/lessons/:lessonid/:email", dashboardController.addLessonToInstructor)
+
 // routes: ratings 
 
 router.post("/reviews", ratingController.postRatings);

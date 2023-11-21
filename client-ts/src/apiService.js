@@ -139,6 +139,18 @@ async function acceptLesson(id) {
   }
 }
 
+async function addLessonToInstructor(id,instructorEmail) {
+  try {
+    const data = await fetch(`${url}/lessons/${id}/${instructorEmail}`, {
+      method: "PUT",
+    });
+    const response = await data.json();
+    return response;
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 async function rejectLesson(id) {
   try {
     const data = await fetch(`${url}/lessons/${id}/reject`, {
@@ -242,5 +254,6 @@ module.exports = {
   getReviews,
   postReviews,
   postRegister,
-  postRegisterInstructor
+  postRegisterInstructor,
+  addLessonToInstructor,
 };
