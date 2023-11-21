@@ -46,7 +46,6 @@ const InstructorLogin = () => {
         <Link className="register-btn" to="/register_instructor">
           <button className="register-inner-btn" type="submit">Register</button>
         </Link>
-        {/* <button id="customer-login" type="submit">Login</button> */}
       </form>
     </div>
   );
