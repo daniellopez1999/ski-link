@@ -7,6 +7,9 @@ import ReviewList from '../components/ReviewList';
 import homeImage from "../images/homepage_img.png";
 
 const Home = () => {
+
+    const getUserEmail = localStorage.getItem('email')
+
     return (
         <div className="full-app-container">
             <NavBar />
@@ -20,7 +23,10 @@ const Home = () => {
                     <p id="home-tagline"> Your alpine journey starts here </p>
 
                     <button id="home-booking">
-                        <Link to="/skilesson">Book Ski Lessons</Link>
+                        {getUserEmail ? (<Link to="/skilesson">Book Ski Lessons</Link>) 
+                        :
+                        (<Link to="/login">Book Ski Lessons</Link>)}
+                        
                     </button>
                 </div>
             </div>
