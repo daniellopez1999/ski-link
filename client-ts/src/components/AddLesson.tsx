@@ -155,7 +155,8 @@ const AddLesson = () => {
             <label>
               Date:
               <input
-                type="date"
+                // type="date"
+                type="datetime-local"
                 required={true}
                 value={inputValues.date}
                 onChange={handleChange}
