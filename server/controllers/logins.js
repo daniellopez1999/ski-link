@@ -20,7 +20,7 @@ exports.postLogin = async (req, res) => {
         res.status(401).json({ message: 'Invalid credentials' });
       }
     } else {
-      res.status(401).json({ message: 'Invalid credentials' });
+      res.status(402).json({ message: 'Invalid credentials' });
     }
   } catch (error) {
     res.status(500).json({ message: 'Internal server error' });
@@ -34,7 +34,7 @@ exports.registerUser = async (req, res) => {
     const userExists = await User.findOne({ email });
 
     if (userExists) {
-      res.status(401).json({ message: 'User already exists' });
+      res.status(403).json({ message: 'User already exists' });
     } else {
       const passwordHashed = await bcrypt.hash(password, 10);
       const user = await User.create({
