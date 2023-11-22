@@ -1,26 +1,27 @@
-import { useState } from "react";
-import { postLogin } from "../apiService";
+import React, { useState, useEffect } from "react";
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { loginUser } from "../redux/authSlice";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../images/SkiLink_logo.png";
 
 const CustomerLogin = () => {
-  let navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
 
-  const handleSubmit = async (event: { preventDefault: () => void; }) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const loginObj = { email, password };
-    const response = await postLogin(loginObj);
-
-    if (response.message) {
-      localStorage.setItem('email', email)
-      navigate("/client");
-    } else {
-      alert("login failed");
-      console.error("Login failed");
-    }
+    dispatch(loginUser({ email, password }));
   };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      localStorage.setItem('email', email);
+      navigate("/client");
+    }
+  }, [isLoggedIn, email, navigate]);
 
   return (
     <div className="customer-login-container">
