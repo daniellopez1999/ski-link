@@ -76,6 +76,15 @@ const Lessons: React.FC<LessonProps> = ({ lesson, setLessons, isClientView }) =>
             </button>
           </>
         )}
+
+        {isClientView && isActionable &&(
+          <>
+            <button id="reject" onClick={handleReject}>
+              {" "}
+              Reject{" "}
+            </button>
+          </>
+        )} 
         <br></br>
       </div>
     </div>
