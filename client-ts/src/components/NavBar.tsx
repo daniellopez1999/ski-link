@@ -12,16 +12,24 @@ const NavBar = () => {
 
 
   const instructorEmail = localStorage.getItem('instructor_email');
+  const userEmail = localStorage.getItem('email')
   const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
 
-  function checkInstructor() {
+  function checkInstructor () {
     if (instructorEmail) {
+      setUserIsLoggedIn(true);
+    }
+  }
+
+  function checkIfUserLogIn () {
+    if (userEmail) {
       setUserIsLoggedIn(true);
     }
   }
 
   useEffect(() => {
     checkInstructor();
+    checkIfUserLogIn();
   }, []);
 
   return (
@@ -49,8 +57,10 @@ const NavBar = () => {
           </span>
         )}
         <span>
-          <Link to="/login">Login</Link>
+        {userIsLoggedIn ? (<Link to="/client">Client</Link>) : (<Link to="/login">Client</Link>)}
         </span>
+          
+        
         <span onClick={handleLogout} id="log-out-navbar">
           <Link to="/">Logout</Link>
         </span>
