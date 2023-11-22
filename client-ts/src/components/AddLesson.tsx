@@ -74,11 +74,22 @@ const AddLesson = () => {
       email: getEmailFromLS
     };
 
-    postLessons(lessonObj).then((newLesson) => {
+    postLessons(lessonObj).then(() => {
+      // setInputValues({
+      //   ...inputValues,
+      //   lessons: newLesson,
+      // });
+
       setInputValues({
-        ...inputValues,
-        lessons: newLesson,
+        name: '',
+        resort: '',
+        level: '',
+        date: '',
+        lessons: [],
+        weather: [],
+        email: '',
       });
+
       toast.success("Lesson request successful!", {
         position: "top-right",
         autoClose: 3000,
