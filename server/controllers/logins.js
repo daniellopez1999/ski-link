@@ -61,11 +61,6 @@ exports.registerUser = async (req, res) => {
 
 }
 
-const hardcodedInstructor = {
-  email: "jane@gmail.com",
-  password: "password", // Change before going live
-};
-
 exports.instructorLogin = async (req, res) => {
   const { email, password } = req.body;
 

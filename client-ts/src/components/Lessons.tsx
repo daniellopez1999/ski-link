@@ -36,10 +36,9 @@ const Lessons: React.FC<LessonProps> = ({ lesson, setLessons, isClientView }) =>
     });
   }
 
-  if (lesson.status === "ACCEPTED") return null;
-  if (lesson.status === "REJECTED") return null;
-
-  // if (lesson.status === "ACCEPTED" || lesson.status === "REJECTED") return null;
+  if (lesson.status === "ACCEPTED" && !isClientView === true) return null;
+  if (lesson.status === "REJECTED" && !isClientView === true) return null;
+  if (lesson.status === "REJECTED" && isClientView === true) return null;
 
   return (
     <div className="Lesson">
