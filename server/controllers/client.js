@@ -10,7 +10,6 @@ exports.getClientLessons = async (req, res) => {
       res.json([]);
     }
   } catch (err) {
-    console.log("err", err);
     res.sendStatus(404);
   }
 };

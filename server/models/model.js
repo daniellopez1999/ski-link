@@ -74,7 +74,7 @@ const usersSchema = new mongoose.Schema({
     required: true
   },
 })
-const User = mongoose.model('User', usersSchema)
+const User = mongoose.model('User', usersSchema);
 
 
 const instructorsSchema = new mongoose.Schema({
@@ -91,7 +91,7 @@ const instructorsSchema = new mongoose.Schema({
     required: false,
   }
 })
-const Instructor = mongoose.model('Instructor', instructorsSchema)
+const Instructor = mongoose.model('Instructor', instructorsSchema);
 
 
 module.exports = { Lesson, Rating, User, Instructor };
