@@ -46,7 +46,6 @@ exports.registerUser = async (req, res) => {
         res.status(201).json({
           message: 'User registered',
           _id: user._id,
-          name: user.name,
           email: user.email
         });
       } else {
@@ -112,11 +111,10 @@ exports.registerInstructor = async (req, res) => {
         res.status(201).json({
           message: 'Instructor registered',
           _id: user._id,
-          name: user.name,
           email: user.email
         });
       } else {
-        res.status(400).json({ message: 'Invalid user data' })
+        res.status(400).json({ message: 'Invalid user data' });
       }
     }
 

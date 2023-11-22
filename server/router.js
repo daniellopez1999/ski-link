@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const dashboardController = require('./controllers/dashboard');
-const loginsController = require('./controllers/logins')
-const clientController = require('./controllers/client')
+const loginsController = require('./controllers/logins');
+const clientController = require('./controllers/client');
 
-const ratingController = require('./controllers/rating')
+const ratingController = require('./controllers/rating');
 
 
 // routes: logins 
@@ -32,7 +32,7 @@ router.put("/lessons/:id/accept", dashboardController.acceptLessons);
 
 router.put("/lessons/:id/reject", dashboardController.rejectLessons);
 
-router.put("/lessons/:lessonid/:email", dashboardController.addLessonToInstructor)
+router.put("/lessons/:lessonid/:email", dashboardController.addLessonToInstructor);
 
 // routes: ratings 
 
