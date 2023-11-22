@@ -3,6 +3,14 @@ import { render, screen } from '@testing-library/react';
 import Login from '../pages/Login';
 import { MemoryRouter } from 'react-router-dom';
 
+jest.mock('react-redux', () => {
+    return {
+        ...jest.requireActual('react-redux'),
+        useSelector: jest.fn().mockImplementation(() => ({})),
+        useDispatch: () => jest.fn(),
+    };
+});
+
 test('render login', () => {
     render(
         <MemoryRouter>

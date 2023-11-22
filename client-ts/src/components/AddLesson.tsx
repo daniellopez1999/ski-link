@@ -9,7 +9,6 @@ interface FormState {
 }
 
 const AddLesson = () => {
-
   const [inputValues, setInputValues] = useState<FormState['inputValues']>({
     name: '',
     resort: '',
@@ -18,19 +17,15 @@ const AddLesson = () => {
     lessons: [],
     weather: [],
     email: '',
-  })
-
-
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setInputValues({
       ...inputValues,
       [e.target.name]: e.target.value
-
-    })
+    });
     console.log(inputValues);
-
-  }
+  };
 
   const handleResortChange = async (selectedResort: string) => {
     setInputValues({
@@ -51,23 +46,42 @@ const AddLesson = () => {
     }
   };
 
-  function handleSubmit(e: { preventDefault: () => void; }) {
+  const isDateValid = (date: string) => {
+    const today = new Date();
+    const selectedDate = new Date(date);
+    return selectedDate >= today;
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!isDateValid(inputValues.date)) {
+      toast.error("Cannot book lessons for past dates!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
 
     let getEmailFromLS = localStorage.getItem('email') || '';
     const lessonObj = {
       ...inputValues,
       email: getEmailFromLS
-    }
+    };
 
     postLessons(lessonObj).then((newLesson) => {
       setInputValues({
         ...inputValues,
         lessons: newLesson,
-      })
+      });
       toast.success("Lesson request successful!", {
         position: "top-right",
-        autoClose: 2000,
+        autoClose: 3000,
         hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
@@ -75,7 +89,7 @@ const AddLesson = () => {
         progress: undefined,
       });
     });
-  }
+  };
 
   return (
     <>
