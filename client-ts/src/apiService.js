@@ -6,23 +6,19 @@ async function getLessons() {
   try {
     const data = await fetch(`${url}/lessons`);
     const response = await data.json();
-    console.log("getLessons data:", response);
     return response;
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
 async function getClientLessons(email) {
   try {
-    //when login works, uncomment and use that data
     const data = await fetch(`${url}/lessons/${email}`);
-    //const data = await fetch(`${url}/lessons`);
     const response = await data.json();
-    console.log("getClientLessons data:", response);
     return response;
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -38,7 +34,7 @@ async function postLessons(lessonObj) {
     const response = await data.json();
     return response;
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -61,7 +57,7 @@ async function postLogin(loginObj) {
       return response;
     }
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -84,7 +80,7 @@ async function postRegister(loginObj) {
       return response;
     }
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -100,7 +96,7 @@ async function postInstructorLogin(instructorObj) {
     const response = await data.json();
     return response;
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -123,7 +119,7 @@ async function postRegisterInstructor(loginObj) {
       return response;
     }
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -135,11 +131,11 @@ async function acceptLesson(id) {
     const response = await data.json();
     return response;
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
-async function addLessonToInstructor(id,instructorEmail) {
+async function addLessonToInstructor(id, instructorEmail) {
   try {
     const data = await fetch(`${url}/lessons/${id}/${instructorEmail}`, {
       method: "PUT",
@@ -147,7 +143,7 @@ async function addLessonToInstructor(id,instructorEmail) {
     const response = await data.json();
     return response;
   } catch (err) {
-    console.log(err)
+    console.error(err)
   }
 }
 
@@ -159,7 +155,7 @@ async function rejectLesson(id) {
     const response = await data.json();
     return response;
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -190,7 +186,6 @@ const coordinates = {
 async function getWeather(resortName) {
 
   const apiKey = process.env.REACT_APP_API_KEY;
-  console.log(apiKey)
 
   if (!coordinates[resortName]) {
     throw new Error(`No coordinates found for resort: ${resortName}`);
@@ -222,7 +217,7 @@ async function getReviews() {
     console.log("getReviews data:", response);
     return response;
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -238,7 +233,7 @@ async function postReviews(reviewObj) {
     const response = await data.json();
     return response;
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
