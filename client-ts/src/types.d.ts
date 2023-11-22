@@ -4,7 +4,6 @@ export interface Lesson {
     resort: string,
     level: string,
     date: string,
-    // time: string,
     lessons: string[],
     weather: string[],
     status?: string,

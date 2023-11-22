@@ -39,6 +39,8 @@ const Lessons: React.FC<LessonProps> = ({ lesson, setLessons, isClientView }) =>
   if (lesson.status === "ACCEPTED") return null;
   if (lesson.status === "REJECTED") return null;
 
+  // if (lesson.status === "ACCEPTED" || lesson.status === "REJECTED") return null;
+
   return (
     <div className="Lesson">
       <div className="lesson-text-container">
@@ -56,7 +58,7 @@ const Lessons: React.FC<LessonProps> = ({ lesson, setLessons, isClientView }) =>
         </p>
         <p>
           {" "}
-          <b> Date: </b> {moment(lesson.date).format("MMMM Do, YYYY")}{" "}
+          <b> Date: </b> {moment(lesson.date).format("MMMM Do, YYYY, HH:mm")}{" "}
         </p>
         <p>
           {" "}
