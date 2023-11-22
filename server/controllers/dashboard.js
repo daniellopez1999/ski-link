@@ -14,9 +14,23 @@ exports.getLessons = async (req, res) => {
 exports.postLessons = async (req, res) => {
   try {
     const newLesson = req.body;
-    const createdLesson = await Lesson.create(newLesson);
-    res.status(201);
-    res.json(createdLesson);
+
+    //check date received is older than today
+    const dateReceived = req.body.date
+    const currentDate = new Date();
+
+    console.log(dateReceived)
+    console.log(currentDate)
+
+    if (dateReceived > currentDate) {
+      const createdLesson = await Lesson.create(newLesson);
+      res.status(201);
+      res.json(createdLesson);
+    }
+    else {
+      res.status(400).json({ error: 'Wrong Date'})
+    }
+
   } catch (err) {
     console.log("err", err);
     res.sendStatus(404);
