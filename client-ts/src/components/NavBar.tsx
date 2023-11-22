@@ -15,13 +15,13 @@ const NavBar = () => {
   const userEmail = localStorage.getItem('email')
   const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
 
-  function checkInstructor () {
+  function checkInstructor() {
     if (instructorEmail) {
       setUserIsLoggedIn(true);
     }
   }
 
-  function checkIfUserLogIn () {
+  function checkIfUserLogIn() {
     if (userEmail) {
       setUserIsLoggedIn(true);
     }
@@ -57,10 +57,10 @@ const NavBar = () => {
           </span>
         )}
         <span>
-        {userIsLoggedIn ? (<Link to="/client">Client</Link>) : (<Link to="/login">Client</Link>)}
+          {userIsLoggedIn ? (<Link to="/client">Client</Link>) : (<Link to="/login">Client</Link>)}
         </span>
-          
-        
+
+
         <span onClick={handleLogout} id="log-out-navbar">
           <Link to="/">Logout</Link>
         </span>

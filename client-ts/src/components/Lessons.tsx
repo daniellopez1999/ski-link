@@ -77,14 +77,14 @@ const Lessons: React.FC<LessonProps> = ({ lesson, setLessons, isClientView }) =>
           </>
         )}
 
-        {isClientView && isActionable &&(
+        {isClientView && isActionable && (
           <>
             <button id="reject" onClick={handleReject}>
               {" "}
-              Reject{" "}
+              Cancel{" "}
             </button>
           </>
-        )} 
+        )}
         <br></br>
       </div>
     </div>
