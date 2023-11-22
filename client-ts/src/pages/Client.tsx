@@ -5,6 +5,7 @@ import { useState } from "react";
 import NavBar from "../components/NavBar";
 import { Lesson } from "../types";
 import { useNavigate } from "react-router-dom";
+import sortLessons from "../utils/sortLessons";
 
 const Client = () => {
   let navigate = useNavigate();
@@ -20,7 +21,7 @@ const Client = () => {
 
   useEffect(() => {
     getClientLessons(email).then((data) => {
-      setLessons(data);
+      setLessons(sortLessons(data));
     });
   }, [email]);
 
