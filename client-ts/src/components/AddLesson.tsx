@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { getWeather, postLessons } from "../apiService";
-import { ToastContainer, toast } from "react-toastify";
-import { Lesson } from "../types";
-import "react-toastify/dist/ReactToastify.css";
+import { useState } from 'react';
+import { getWeather, postLessons } from '../apiService';
+import { ToastContainer, toast } from 'react-toastify';
+import { Lesson } from '../types';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface FormState {
   inputValues: Lesson;
@@ -19,18 +19,19 @@ const AddLesson = () => {
     email: '',
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     setInputValues({
       ...inputValues,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
-    console.log(inputValues);
   };
 
   const handleResortChange = async (selectedResort: string) => {
     setInputValues({
       ...inputValues,
-      resort: selectedResort
+      resort: selectedResort,
     });
     if (selectedResort) {
       try {
@@ -38,10 +39,10 @@ const AddLesson = () => {
         setInputValues({
           ...inputValues,
           weather: weatherData.list,
-          resort: selectedResort
+          resort: selectedResort,
         });
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     }
   };
@@ -56,8 +57,8 @@ const AddLesson = () => {
     e.preventDefault();
 
     if (!isDateValid(inputValues.date)) {
-      toast.error("Cannot book lessons for past dates!", {
-        position: "top-right",
+      toast.error('Cannot book lessons for past dates!', {
+        position: 'top-right',
         autoClose: 3000,
         hideProgressBar: true,
         closeOnClick: true,
@@ -71,15 +72,10 @@ const AddLesson = () => {
     let getEmailFromLS = localStorage.getItem('email') || '';
     const lessonObj = {
       ...inputValues,
-      email: getEmailFromLS
+      email: getEmailFromLS,
     };
 
     postLessons(lessonObj).then(() => {
-      // setInputValues({
-      //   ...inputValues,
-      //   lessons: newLesson,
-      // });
-
       setInputValues({
         name: '',
         resort: '',
@@ -90,8 +86,8 @@ const AddLesson = () => {
         email: '',
       });
 
-      toast.success("Lesson request successful!", {
-        position: "top-right",
+      toast.success('Lesson request successful!', {
+        position: 'top-right',
         autoClose: 3000,
         hideProgressBar: true,
         closeOnClick: true,
@@ -142,7 +138,11 @@ const AddLesson = () => {
           <div className="form-control">
             <label>
               Lesson type:
-              <select value={inputValues.level} onChange={handleChange} name="level">
+              <select
+                value={inputValues.level}
+                onChange={handleChange}
+                name="level"
+              >
                 <option> </option>
                 <option value="Beginner">Beginner</option>
                 <option value="Intermediate">Intermediate</option>

@@ -1,6 +1,6 @@
 // import { API_KEY } from './config/apikey'
 
-const url = "http://localhost:3000";
+const url = 'http://localhost:3000';
 
 async function getLessons() {
   try {
@@ -25,9 +25,9 @@ async function getClientLessons(email) {
 async function postLessons(lessonObj) {
   try {
     const data = await fetch(`${url}/lessons`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(lessonObj),
     });
@@ -41,18 +41,16 @@ async function postLessons(lessonObj) {
 async function postLogin(loginObj) {
   try {
     const data = await fetch(`${url}/login`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(loginObj),
     });
 
     if (!data.ok) {
-      console.log(`Error: ${data.status} - ${data.statusText}}`)
-    }
-
-    else {
+      console.error(`Error: ${data.status} - ${data.statusText}}`);
+    } else {
       const response = await data.json();
       return response;
     }
@@ -64,18 +62,16 @@ async function postLogin(loginObj) {
 async function postRegister(loginObj) {
   try {
     const data = await fetch(`${url}/register`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(loginObj),
     });
 
     if (!data.ok) {
-      console.log(`Error: ${data.status} - ${data.statusText}}`)
-    }
-
-    else {
+      console.error(`Error: ${data.status} - ${data.statusText}}`);
+    } else {
       const response = await data.json();
       return response;
     }
@@ -87,9 +83,9 @@ async function postRegister(loginObj) {
 async function postInstructorLogin(instructorObj) {
   try {
     const data = await fetch(`${url}/instructor_login`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(instructorObj),
     });
@@ -103,18 +99,16 @@ async function postInstructorLogin(instructorObj) {
 async function postRegisterInstructor(loginObj) {
   try {
     const data = await fetch(`${url}/register_instructor`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(loginObj),
     });
 
     if (!data.ok) {
-      console.log(`Error: ${data.status} - ${data.statusText}}`)
-    }
-
-    else {
+      console.error(`Error: ${data.status} - ${data.statusText}}`);
+    } else {
       const response = await data.json();
       return response;
     }
@@ -126,7 +120,7 @@ async function postRegisterInstructor(loginObj) {
 async function acceptLesson(id) {
   try {
     const data = await fetch(`${url}/lessons/${id}/accept`, {
-      method: "PUT",
+      method: 'PUT',
     });
     const response = await data.json();
     return response;
@@ -138,19 +132,19 @@ async function acceptLesson(id) {
 async function addLessonToInstructor(id, instructorEmail) {
   try {
     const data = await fetch(`${url}/lessons/${id}/${instructorEmail}`, {
-      method: "PUT",
+      method: 'PUT',
     });
     const response = await data.json();
     return response;
   } catch (err) {
-    console.error(err)
+    console.error(err);
   }
 }
 
 async function rejectLesson(id) {
   try {
     const data = await fetch(`${url}/lessons/${id}/reject`, {
-      method: "PUT",
+      method: 'PUT',
     });
     const response = await data.json();
     return response;
@@ -182,9 +176,7 @@ const coordinates = {
   },
 };
 
-
 async function getWeather(resortName) {
-
   const apiKey = process.env.REACT_APP_API_KEY;
 
   if (!coordinates[resortName]) {
@@ -198,23 +190,20 @@ async function getWeather(resortName) {
   try {
     const response = await fetch(weatherUrl);
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error('Network response was not ok');
     }
     const res = await response.json();
-    console.log("getWeather data:", res);
     return res;
   } catch (err) {
-    console.error("Error fetching weather data:", err);
+    console.error('Error fetching weather data:', err);
     throw err;
   }
 }
-
 
 async function getReviews() {
   try {
     const data = await fetch(`${url}/reviews`);
     const response = await data.json();
-    console.log("getReviews data:", response);
     return response;
   } catch (err) {
     console.error(err);
@@ -224,9 +213,9 @@ async function getReviews() {
 async function postReviews(reviewObj) {
   try {
     const data = await fetch(`${url}/reviews`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(reviewObj),
     });

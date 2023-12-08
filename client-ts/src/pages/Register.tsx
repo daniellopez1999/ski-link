@@ -1,31 +1,28 @@
-import React from 'react'
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import logo from "../images/SkiLink_logo.png";
+import React from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import logo from '../images/SkiLink_logo.png';
 import { postRegister } from '../apiService';
-
 
 const Register = () => {
   let navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleSubmit = async (event: { preventDefault: () => void; }) => {
+  const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
     const registerObj = { email, password };
 
-    //Post register, change postlogin to postregister. first create in apiService.js
     const response = await postRegister(registerObj);
 
     if (!response.error) {
-      localStorage.setItem('email', email)
-      navigate("/");
+      localStorage.setItem('email', email);
+      navigate('/');
     } else {
-      alert("login failed");
-      console.error("Login failed");
+      alert('login failed');
+      console.error('Login failed');
     }
   };
-
 
   return (
     <div className="customer-login-container">
@@ -47,10 +44,12 @@ const Register = () => {
           placeholder="Enter password"
           required={true}
         />
-        <button className="customer-login" type="submit">Register</button>
+        <button className="customer-login" type="submit">
+          Register
+        </button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;

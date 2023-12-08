@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { postReviews } from "../apiService";
+import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { postReviews } from '../apiService';
 import StarRating from './StarRating';
-import { Review } from "../types";
+import { Review } from '../types';
 
 interface FormState {
-  inputValues: Review
+  inputValues: Review;
 }
 
 const AddReview = () => {
@@ -14,24 +14,25 @@ const AddReview = () => {
     name: '',
     score: 0,
     comment: '',
-    reviews: ''
-  })
+    reviews: '',
+  });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
     setInputValues({
       ...inputValues,
-      [e.target.name]: e.target.value
-
-    })
-    console.log(inputValues);
-
-  }
-
-  const reviewObj = {
-    ...inputValues
+      [e.target.name]: e.target.value,
+    });
   };
 
-  function handleSubmit(e: { preventDefault: () => void; }) {
+  const reviewObj = {
+    ...inputValues,
+  };
+
+  function handleSubmit(e: { preventDefault: () => void }) {
     e.preventDefault();
 
     postReviews(reviewObj).then((newReview) => {
@@ -39,11 +40,11 @@ const AddReview = () => {
         name: '',
         score: 0,
         comment: '',
-        reviews: newReview
+        reviews: newReview,
       });
 
-      toast.success("Review submitted!", {
-        position: "top-right",
+      toast.success('Review submitted!', {
+        position: 'top-right',
         autoClose: 2000,
         hideProgressBar: true,
         closeOnClick: true,
@@ -57,10 +58,9 @@ const AddReview = () => {
   const setRating = (newScore: number) => {
     setInputValues({
       ...inputValues,
-      score: newScore
+      score: newScore,
     });
   };
-
 
   return (
     <>
@@ -84,14 +84,14 @@ const AddReview = () => {
         <div className="rating-form-control">
           <label>
             Rating:
-            < StarRating rating={inputValues.score} setRating={setRating} />
+            <StarRating rating={inputValues.score} setRating={setRating} />
           </label>
         </div>
         <div className="rating-form-control">
           <label>
             Comments:
             <textarea
-              id='comments'
+              id="comments"
               required={true}
               placeholder=""
               value={inputValues.comment}

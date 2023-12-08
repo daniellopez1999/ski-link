@@ -5,40 +5,40 @@ const clientController = require('./controllers/client');
 
 const ratingController = require('./controllers/rating');
 
+// routes: logins
 
-// routes: logins 
+router.post('/login/', loginsController.postLogin);
 
-router.post("/login/", loginsController.postLogin);
-
-router.post("/instructor_login", loginsController.instructorLogin);
+router.post('/instructor_login', loginsController.instructorLogin);
 
 //routes: register
 
 router.post('/register', loginsController.registerUser);
 router.post('/register_instructor', loginsController.registerInstructor);
 
+// routes: client dashboard
 
-// routes: client dashboard 
+router.get('/lessons/:email', clientController.getClientLessons);
 
-router.get("/lessons/:email", clientController.getClientLessons);
+// routes: instructor dashboard
 
-// routes: instructor dashboard 
+router.get('/lessons', dashboardController.getLessons);
 
-router.get("/lessons", dashboardController.getLessons);
+router.post('/lessons', dashboardController.postLessons);
 
-router.post("/lessons", dashboardController.postLessons);
+router.put('/lessons/:id/accept', dashboardController.acceptLessons);
 
-router.put("/lessons/:id/accept", dashboardController.acceptLessons);
+router.put('/lessons/:id/reject', dashboardController.rejectLessons);
 
-router.put("/lessons/:id/reject", dashboardController.rejectLessons);
+router.put(
+  '/lessons/:lessonid/:email',
+  dashboardController.addLessonToInstructor
+);
 
-router.put("/lessons/:lessonid/:email", dashboardController.addLessonToInstructor);
+// routes: ratings
 
-// routes: ratings 
+router.post('/reviews', ratingController.postRatings);
 
-router.post("/reviews", ratingController.postRatings);
-
-router.get("/reviews", ratingController.getRatings);
-
+router.get('/reviews', ratingController.getRatings);
 
 module.exports = router;
